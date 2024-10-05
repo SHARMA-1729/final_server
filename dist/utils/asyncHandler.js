@@ -1,6 +1,13 @@
-const asyncHandler = requestHandler => {
-  return (req, res, next) => {
-    Promise.resolve(requestHandler(req, res, next)).catch(err => next(err));
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.asyncHandler = void 0;
+var asyncHandler = exports.asyncHandler = function asyncHandler(requestHandler) {
+  return function (req, res, next) {
+    Promise.resolve(requestHandler(req, res, next))["catch"](function (err) {
+      return next(err);
+    });
   };
 };
-export { asyncHandler };
